@@ -1,0 +1,1 @@
+{"version":3,"sources":["sass/_example.scss"],"names":[],"mappings":"AAAA,SACE,gBAGF,OACE,oBAAA,CACA","file":"src.08ffcc2a.css","sourceRoot":"../src","sourcesContent":[".wrapper {\n  margin-top: 50px;\n}\n\n.badge {\n  display: inline-block;\n  float: none !important;\n}\n"]}
