@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://josserden.github.io/react40-blended/",
   "dependencies": {
+    "@chakra-ui/react": "^1.8.8",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@mui/material": "^5.4.0",
