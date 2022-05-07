@@ -1,44 +1,80 @@
-import { useState, useEffect } from 'react';
-import * as ContactsService from 'service/api-service';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 
-import Header from 'components/Header';
-import Section from 'components/Section';
-import ContactList from 'components/ContactList';
+export default function App() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-export const App = () => {
-  const [contacts, setContacts] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const onSubmit = data => console.log(data);
 
-  useEffect(() => {
-    const fetchContacts = async () => {
-      try {
-        const contacts = await ContactsService.getContacts();
-        setContacts(contacts);
-      } catch (error) {
-        setError(error);
-      }
-    };
-
-    fetchContacts();
-  }, []);
-
-  const onDelete = id => {
-    ContactsService.deleteContact(id);
-
-    const newContacts = contacts.filter(contact => contact.id !== id);
-    setContacts(newContacts);
-  };
+  console.log(errors);
 
   return (
-    <>
-      <Header />
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input
+        type="text"
+        placeholder="First name"
+        {...register('First name', {
+          required: true,
+          min: 2,
+          maxLength: 80,
+          pattern:
+            /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/i,
+        })}
+        required
+      />
 
-      {error && <p>{error.message}</p>}
+      <input
+        type="text"
+        placeholder="Last name"
+        {...register('Last name', {
+          required: true,
+          min: -12,
+          maxLength: 100,
+          pattern:
+            /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/i,
+        })}
+      />
 
-      <Section>
-        <ContactList contacts={contacts} onDelete={onDelete} />
-      </Section>
-    </>
+      <input
+        type="email"
+        placeholder="Email"
+        {...register('Email', { required: true, pattern: /^\S+@\S+$/i })}
+      />
+
+      <input
+        type="tel"
+        placeholder="Mobile number"
+        {...register('Mobile number', {
+          required: true,
+          maxLength: 17,
+          pattern:
+            /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/i,
+        })}
+      />
+
+      <select {...register('Title', { required: true })}>
+        <option value="Mr">Mr</option>
+        <option value="Mrs">Mrs</option>
+        <option value="Miss">Miss</option>
+        <option value="Dr">Dr</option>
+      </select>
+
+      <input
+        {...register('Developer', { required: true })}
+        type="radio"
+        value="Yes"
+      />
+      <input
+        {...register('Developer', { required: true })}
+        type="radio"
+        value="No"
+      />
+
+      <input type="submit" />
+    </form>
   );
-};
+}
