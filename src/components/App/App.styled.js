@@ -38,15 +38,23 @@ export const Heading = styled.h2`
   font-size: ${props => props.theme.fontSizes.medium};
   font-weight: 700;
 
+  text-align: ${({ textAlign }) => (!textAlign ? 'left' : textAlign)};
+
   margin-bottom: 20px;
 
   @media (min-width: ${props => props.theme.breakpoints.s}) {
     font-size: ${props => props.theme.fontSizes.large};
+
+    margin-bottom: 30px;
   }
   @media (min-width: ${props => props.theme.breakpoints.m}) {
     font-size: ${props => props.theme.fontSizes.xl};
+
+    margin-bottom: 40px;
   }
   @media (min-width: ${props => props.theme.breakpoints.l}) {
     font-size: ${props => props.theme.fontSizes.xxl};
+
+    margin-bottom: 60px;
   }
 `;

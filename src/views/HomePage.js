@@ -6,7 +6,7 @@ export const HomePage = () => {
     <>
       <Section>
         <Container>
-          <Heading>Home</Heading>
+          <Heading textAlign="center">Home</Heading>
           <Table />
         </Container>
       </Section>

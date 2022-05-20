@@ -1,5 +1,5 @@
 import React from 'react';
-import { Section, Container, Heading } from 'components';
+import { Section, Container, Heading, Form } from 'components';
 
 export const AddContactPage = () => {
   return (
@@ -7,6 +7,8 @@ export const AddContactPage = () => {
       <Section>
         <Container>
           <Heading>Add Contact Page</Heading>
+
+          <Form />
         </Container>
       </Section>
     </>
